@@ -1,8 +1,9 @@
-package com.example.benjaminlize.awake;
+package com.example.benjaminlize.awake.requests;
 
-import android.app.Application;
-import android.test.ApplicationTestCase;
+import android.os.AsyncTask;
+import android.util.Log;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -14,16 +15,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 /**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
+ * Created by benjamin.lize on 21/05/2016.
  */
-public class ApplicationTest extends ApplicationTestCase<Application> {
-    private static final String LOG_TAG = ApplicationTest.class.getSimpleName();
+public class DetailsRequest extends AsyncTask {
+    private static final String TAG = DetailsRequest.class.getSimpleName();
 
-    public ApplicationTest() {
-        super(Application.class);
-    }
-
-    public void testAPICall(){
+    @Override
+    protected Object doInBackground(Object[] params) {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -39,10 +37,9 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
             theResponse = response.body().string();
 
             ObjectMapper m = new ObjectMapper();
-            //*JsonNode rootNode = m.readTree(theResponse);
-
+            JsonNode rootNode = m.readTree(theResponse);
+            Log.i(TAG, "doInBackground: " + theResponse);
             JSONObject jsonObject = new JSONObject(theResponse);
-            char[] sup = theResponse.toCharArray();
 
             int hi = 1;
         } catch (IOException e) {
@@ -50,5 +47,6 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
