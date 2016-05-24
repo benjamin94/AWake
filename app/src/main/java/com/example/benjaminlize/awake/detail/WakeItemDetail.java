@@ -8,14 +8,14 @@ public class WakeItemDetail {
     String title;
     String description;
     String imageUrl;
-    String domain;
+    String footprint;
     String urlWebpage;
 
     public WakeItemDetail(String title, String description, String imageUrl, String domain, String urlWebpage) {
         this.title = title;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.domain = domain;
+        this.footprint = domain;
         this.urlWebpage = urlWebpage;
     }
 
@@ -31,8 +31,8 @@ public class WakeItemDetail {
         return imageUrl;
     }
 
-    public String getDomain() {
-        return domain;
+    public String getFootprint() {
+        return footprint;
     }
 
     public String getUrlWebpage() {

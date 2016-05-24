@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.example.benjaminlize.awake.main.WakeAdapter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
@@ -75,6 +74,6 @@ public class WakeRequestDetail extends AsyncTask<Context,Void,ArrayList> {
     protected void onPostExecute(ArrayList arrayList) {
         super.onPostExecute(arrayList);
 
-        mRecyclerView.setAdapter(new WakeAdapter(arrayList,mContext));
+        mRecyclerView.setAdapter(new WakeAdapterDetail(arrayList,mContext));
     }
 }
