@@ -8,9 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.benjaminlize.awake.detail.DetailActivity;
 import com.example.benjaminlize.awake.R;
+import com.example.benjaminlize.awake.detail.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -30,7 +31,8 @@ public class WakeAdapter extends RecyclerView.Adapter<WakeAdapter.WakeViewHolder
 
     @Override
     public WakeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wake_item, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wake_item, parent,
+                false);
         WakeViewHolder wakeViewHolder = new WakeViewHolder(view);
         return wakeViewHolder;
     }
@@ -50,7 +52,13 @@ public class WakeAdapter extends RecyclerView.Adapter<WakeAdapter.WakeViewHolder
 
     @Override
     public int getItemCount() {
-        return mWakeItemList.size();
+        if (mWakeItemList != null){
+            return mWakeItemList.size();
+        }else {
+            Toast.makeText(mContext, "Please connect to the internet and restart the app", Toast
+                    .LENGTH_SHORT).show();
+            return 0;
+        }
     }
 
     protected class WakeViewHolder extends RecyclerView.ViewHolder {
@@ -78,5 +86,7 @@ public class WakeAdapter extends RecyclerView.Adapter<WakeAdapter.WakeViewHolder
             });
         }
     }
+
+
 
 }

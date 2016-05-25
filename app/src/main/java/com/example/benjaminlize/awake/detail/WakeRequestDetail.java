@@ -52,14 +52,31 @@ public class WakeRequestDetail extends AsyncTask<Context,Void,ArrayList> {
             JsonNode items = rootNode.get("_embedded").get("items");
             list = new ArrayList();
 
+
+
             for (int i = 0; i < items.size(); i++) {
                 JsonNode child = items.get(i);
+
+                //Hardcoded to not crash upon API mistake, or it is intended?
+
+                String url = "";
+                String domain = "";
+                JsonNode sup = child.get("summary");
+                if (sup != null){
+                    if (sup.get("url") != null){
+                        url = sup.get("url").textValue();
+                    }
+                    if (sup.get("domain") != null){
+                        domain = sup.get("domain").textValue();
+                    }
+                }
+
                 WakeItemDetail wake = new WakeItemDetail(
                         child.get("title").textValue(),
                         child.get("description").textValue(),
                         child.get("_embedded").get("image").get("smallImageUrl").textValue(),
-                        child.get("summary").get("domain").textValue(),
-                        child.get("summary").get("url").textValue());
+                        domain,
+                        url);
                 list.add(wake);
             }
             Log.i(TAG, "doInBackground: " + theResponse);
@@ -76,4 +93,5 @@ public class WakeRequestDetail extends AsyncTask<Context,Void,ArrayList> {
 
         mRecyclerView.setAdapter(new WakeAdapterDetail(arrayList,mContext));
     }
+
 }

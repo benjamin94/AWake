@@ -8,6 +8,7 @@ public class WakeItem {
     int description;
     String image;
     String detailURL;
+    String profileURL;
 
     public WakeItem(String title, int description, String image, String url) {
         this.title = title;
@@ -16,6 +17,7 @@ public class WakeItem {
         this.detailURL = url;
 
     }
+
 
     public String getDetailURL() {
         return detailURL;

@@ -3,12 +3,14 @@ package com.example.benjaminlize.awake.detail;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.benjaminlize.awake.R;
 import com.squareup.picasso.Picasso;
@@ -30,8 +32,8 @@ public class WakeAdapterDetail extends RecyclerView.Adapter<WakeAdapterDetail.Wa
 
     @Override
     public WakeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wake_item_detail, null);
-        WakeViewHolder wakeViewHolder = new WakeViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wake_item_detail, parent,
+                false);        WakeViewHolder wakeViewHolder = new WakeViewHolder(view);
         return wakeViewHolder;
     }
 
@@ -40,8 +42,8 @@ public class WakeAdapterDetail extends RecyclerView.Adapter<WakeAdapterDetail.Wa
 
         WakeItemDetail wakeItem = mWakeItemList.get(position);
         holder.textViewTitle.setText(wakeItem.getTitle());
-        holder.textViewDesription.setText(String.valueOf(wakeItem.getDescription()) + " items");
-        holder.textViewFootprint.setText(String.valueOf(wakeItem.getFootprint()) + " items");
+        holder.textViewDesription.setText(String.valueOf(wakeItem.getDescription()));
+        holder.textViewFootprint.setText(String.valueOf(wakeItem.getFootprint()));
 
         Picasso.with(mContext).load(wakeItem.getImageUrl())
                 .error(R.mipmap.ic_launcher)
@@ -78,7 +80,17 @@ public class WakeAdapterDetail extends RecyclerView.Adapter<WakeAdapterDetail.Wa
                     mContext.startActivity(browserIntent);
                 }
             });
+
+            FloatingActionButton myFab = (FloatingActionButton) view.findViewById(R.id.fab);
+            myFab.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                        Toast.makeText(mContext, "Wake item saved to clipboard", Toast.LENGTH_SHORT)
+                                .show();
+                }
+            });
         }
     }
+
+
 
 }

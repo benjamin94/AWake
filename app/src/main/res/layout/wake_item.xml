@@ -3,42 +3,49 @@
                                     android:id="@+id/card_view"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_margin="12dp"
-                                    card_view:cardCornerRadius="4dp">
+                                    card_view:cardPreventCornerOverlap="false"
+                                    card_view:cardUseCompatPadding="true"
+                                    card_view:cardCornerRadius="5dp"
+                                    android:weightSum="1"
+    >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher" />
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:elevation="3dp"
+                />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/image"
-            android:maxLines="3"
-            android:text="title test"
-            android:textColor="#222"
-            android:textStyle="bold"
-            android:textSize="22dp" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text="Testing the text"
+                android:maxLines="2"
+                android:textColor="#000000"
+                />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:maxLines="3"
-            android:text="description test"
-            android:textColor="#666"
-            android:textSize="16dp"
-            />
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:text="description test"
+        android:textColor="#666"
+        android:textSize="16dp"
+        />
 
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+    </LinearLayout>
+
+ </android.support.v7.widget.CardView>
+
+
+
+
